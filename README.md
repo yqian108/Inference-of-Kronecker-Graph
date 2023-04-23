@@ -1,1 +1,1 @@
-# Inference_of_Kronecker_graph
+# Inference_of_Kronecker_Graph
