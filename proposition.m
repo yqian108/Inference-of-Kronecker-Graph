@@ -1,0 +1,81 @@
+%% Prop 1 (i) & (iii)
+clc;close all; clear;
+addpath(genpath('./func/.'));
+
+
+m = 2;
+p = 0.9;
+X = [0.5, 0; -1, 1];
+% X = [1, 0; -1, 2];
+% X = [1,0,2;-1,2,3;0,1,2];
+% X = [3, 2.5; 2, 1];
+x = X(:);
+
+K_vec = 7:11;
+error_output = zeros(length(K_vec),1);
+rank_output = zeros(length(K_vec),1);
+
+for i=1:length(K_vec)
+    K = K_vec(i);
+    N = m^K;
+    
+    P1 = p + X/sqrt(N);
+    PK = generate_PK(P1, K);
+    
+    Theta = generate_Theta(K,m,p);
+    PK_lin = p^K * ones(N,N) + reshape(Theta*x,[N,N])*sqrt(N);
+    
+    error_output(i) = norm(PK - PK_lin)/sqrt(N);
+    rank_output(i) = rank(PK_lin);
+end
+
+figure
+plot(m.^K_vec,error_output,'x-')
+title('Operator norm error of linearization $P_K - P_K^{lin}$', 'Interpreter', 'latex')
+xlabel('N', 'Interpreter', 'latex')
+
+figure
+semilogx(m.^K_vec,rank_output,'o-')
+title('Rank of $P_K^{lin}$', 'Interpreter', 'latex')
+xlabel('N', 'Interpreter', 'latex')
+
+%% Prop 2
+clc;close all; clear;
+addpath(genpath('./func/.'));
+
+K_vec = 7:11;
+m = 2;
+p = 0.9;
+% p = 1 - 2/K;
+% X = - [-1, 0.5; 0, 1];
+X = [0.5, 0; -1, 1];
+% X = zeros(2,2);
+x = X(:);
+
+
+K_vec = 7:11;
+error_output = zeros(length(K_vec),1);
+
+for i=1:length(K_vec)
+    K = K_vec(i);
+    N = m^K;
+    
+    P1 = p + X/sqrt(N)
+    PK = generate_PK(P1, K);
+    
+    Theta = generate_Theta(K,m,p);
+    S = reshape(Theta*x,[N,N]);
+    
+    A = double(rand(N,N)<PK);
+    bar_A = (A - ( sum( A(:)/N/N ) )*ones(N,N))/sqrt(N);
+    Z = A - PK;
+    
+    error_output(i) = norm(bar_A - Z/sqrt(N) - S)/sqrt(N);
+   
+end
+
+figure
+plot(m.^K_vec,error_output,'x-')
+title('Operator norm error of $\bar A - (Z/ \sqrt N + S_K)$', 'Interpreter', 'latex')
+xlabel('N', 'Interpreter', 'latex')
+
