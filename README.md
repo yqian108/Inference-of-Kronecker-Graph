@@ -2,7 +2,7 @@
 This repository contains code to reproduces the results in the paper "*Analysis and Approximate Inference of
 Large and Dense Random Kronecker Graph*".
 ## About the code
-* `code_Analysis_and_ Approximate Inference` contains 
+* `code_Analysis_and_Approximate Inference` contains 
   * **theorem.m**: test for Theorem 2
   * **proposition.m**: test for Proposition 1, 2
   * **corolarry.m**: test for corolarry 1
@@ -15,7 +15,7 @@ Large and Dense Random Kronecker Graph*".
       * Input:
         * -P1: Kronecker initiator
         * -K: Iter times
-      * Output: Kronecker probility matrix of size $m^K \times m^K$
+      * Output: Kronecker probability matrix of size $m^K \times m^K$
     * **generate_Theta.m**: generate coefficient matrix
       * Input: 
         * -K: Iter times
