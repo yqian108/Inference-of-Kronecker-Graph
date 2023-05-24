@@ -25,11 +25,11 @@ Large and Dense Random Kronecker Graph*".
     * **shuffle.m**: using a permutation matrix to shuffle a graph
       * Input: 
           * -A: Adjacency matrix of size $N \times N$
-          * -shuffle_prop: The shuffle proportion, in other words, the Hamming distance d_H(pi,I) <= shuffle_prop * $N$
+          * -shuffle_prop: The shuffle proportion, in other words, the Hamming distance $d_H(pi,I) <= shuffle_prop * N$
           * -N: The number of nodes
           * -pi_init_array: Vector of size $N$
        * Output:
-          * -Pi_vector: Vector of size $1 \times N$ meets with $Pi(i,pi_vector(i)) = 1$
+          * -Pi_vector: Vector of size $1 \times N$ meets with $Pi(i,Pi\\_ vector(i)) = 1$
           * -A_shuffle: The adjacency matrix of the shuffled graph
      * **de_noise.m**: de-noise by constructing an estimator S_approx_shrink of SK
        * Input:
