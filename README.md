@@ -58,7 +58,7 @@ Large and Dense Random Kronecker Graph*".
 To execute the code in `classification_task`, you can install follwing basic packages yourself:
 * [Python](https://www.python.org/): tested with version 3.7.10
 * [Pytorch](https://pytorch.org/): tested with version 1.8.1
-* [Pandas](https://pandas.pydata.org/) tested with version 1.3.5
+* [Pandas](https://pandas.pydata.org/): tested with version 1.3.5
 * [Scikit-learn](https://scikit-learn.org/stable/): tested with version 1.0.2
 
 
