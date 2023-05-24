@@ -2,7 +2,7 @@
 This repository contains code to reproduces the results in the paper "*Analysis and Approximate Inference of
 Large and Dense Random Kronecker Graph*".
 ## About the code
-* `code_Analysis_and_Approximate Inference` contains 
+* `code_Analysis_and_Approximate_Inference` contains 
   * **theorem.m**: test for Theorem 2
   * **proposition.m**: test for Proposition 1, 2
   * **corolarry.m**: test for corolarry 1
