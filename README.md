@@ -12,18 +12,18 @@ Large and Dense Random Kronecker Graph*".
   * **hard_thresholding_test.m**: using Iterative Hard-thresholding (IHT) rather than soft thresholding in Algorithm 3
   * `func` contains 
     * **generate_PK.m** : generate probability matrix using K times Kronecker power
-      * Parameters:
+      * Input:
         * -P1: Kronecker initiator
         * -K: Iter times
       * Output: Kronecker probility matrix of size $m^K \times m^K$
     * **generate_Theta.m**: generate coefficient matrix
-      * Parameters: 
+      * Input: 
         * -K: Iter times
         * -m: Kronecker initiator size
         * -p: Parameter of P1
       * Output: coefficient matrix of size $m^{2K} \times m^2$ 
     * **shuffle.m**: using a permutation matrix to shuffle a graph
-      * Parameters: 
+      * Input: 
           * -A: Adjacency matrix of size $N \times N$
           * -shuffle_prop: The shuffle proportion, in other words, the Hamming distance d_H(pi,I) <= shuffle_prop * $N$
           * -N: The number of nodes
@@ -32,14 +32,14 @@ Large and Dense Random Kronecker Graph*".
           * -Pi_vector: Vector of size $1 \times N$ meets with $Pi(i,pi_vector(i)) = 1$
           * -A_shuffle: The adjacency matrix of the shuffled graph
      * **de_noise.m**: de-noise by constructing an estimator S_approx_shrink of SK
-       * Parameters:
+       * Input:
          * -A:  Adjacency matrix of size $N \times N$
          * -N: The number of ndoes
          * -bar_p: Constant between $0$ and $1$
          * -c: The number of choosen singular values
        * Output: an estimator S_approx_shrink of $N$ by $N$
      * **solve_convex_relaxation_func.m**: the implement of Algorithm 3
-        * Parameters: 
+        * Input: 
           * -y_block: Vector of size $N^2$
           * -Theta_block: Coefficient matrix of $N^2 \times m^2$
           * -N: The number of nodes
