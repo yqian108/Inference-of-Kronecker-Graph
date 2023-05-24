@@ -25,7 +25,7 @@ Large and Dense Random Kronecker Graph*".
     * **shuffle.m**: using a permutation matrix to shuffle a graph
       * Input: 
           * -A: Adjacency matrix of size $N \times N$
-          * -shuffle_prop: The shuffle proportion, in other words, the Hamming distance $d_H(pi,I) <= shuffle_prop * N$
+          * -shuffle_prop: The shuffle proportion, in other words, the Hamming distance $d_H(pi,I) <= shuffle\\_ prop * N$
           * -N: The number of nodes
           * -pi_init_array: Vector of size $N$
        * Output:
