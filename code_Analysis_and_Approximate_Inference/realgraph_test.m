@@ -10,7 +10,6 @@ m = 4;
 output_file = ['.\realgraph_datasets\',DATASET,'\convexrelaxation\m',num2str(m),'.mat'];
 
 
-% 1. ╤анд╪Ч
 [src,~,des] = textread(input_edge,'%d%s%d');  
 graph_id = textread(input_sets,'%d');
 [NodeNum,~] = size(graph_id);
