@@ -5,7 +5,7 @@ DATASET = 'REDDIT-BINARY';
 input_edge = ['.\realgraph_datasets\',DATASET,'\',DATASET,'_A.txt'];
 input_sets = ['.\realgraph_datasets\',DATASET,'\',DATASET,'_graph_indicator.txt'];
 isdirect = 0;
-lambda = 0.03;
+lambda = 1;
 m = 4;
 output_file = ['.\realgraph_datasets\',DATASET,'\convexrelaxation\m',num2str(m),'.mat'];
 
@@ -59,9 +59,10 @@ while( algraph <= graphNum)
     
     
     bar_p = sum(A(:))/N/N;
+    p = bar_p^(1/k);
     x_init = zeros(m^2,1);
     S_approx_shrink_shuffle = de_noise(A, N, bar_p,20);
-    Theta = generate_Theta(k,m,bar_p);
+    Theta = generate_Theta(k,m,p);
     hat_x = solve_convex_relaxation_func(S_approx_shrink_shuffle(:), Theta,N,x_init,lambda, 20, 1e-8);
 
     X(algraph,:) = hat_x';

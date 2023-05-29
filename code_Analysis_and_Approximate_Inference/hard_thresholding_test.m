@@ -5,7 +5,7 @@ clc;close all;clear;
 addpath(genpath('./func/.'));
 output_filename = '.\IHT_test.txt';
 
-warm = 10;
+warm = 1;
 
 top_k = 5;
 time_str = num2str(16);
@@ -19,9 +19,10 @@ load(filename);
 t1 = clock;
 for j = 1:warm
     load(filename);
-    bar_p = p^K;
+    bar_p = sum(A_shuffle(:))/N/N;
+    p = bar_p^(1/K);
     Theta = generate_Theta(K,m,p);
-    S_approx_shrink_shuffle = de_noise(A_shuffle, N, bar_p, 6);
+    S_approx_shrink_shuffle = de_noise(A_shuffle, N, bar_p, (m-1)*K+1);
     hat_x =  solve_usingL0(S_approx_shrink_shuffle(:),Theta,N,m,50,150,top_k,1,1e-8); 
     mse_nor = norm(x_true-hat_x,2)^2/norm(x_true,2)^2;
     mse = norm(x_true-hat_x,2)^2;
