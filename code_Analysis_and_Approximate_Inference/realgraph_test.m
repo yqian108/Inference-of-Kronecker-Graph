@@ -61,7 +61,7 @@ while( algraph <= graphNum)
     bar_p = sum(A(:))/N/N;
     p = bar_p^(1/k);
     x_init = zeros(m^2,1);
-    S_approx_shrink_shuffle = de_noise(A, N, bar_p,20);
+    S_approx_shrink_shuffle = de_noise(A, N, bar_p,(m-1)*k+1);
     Theta = generate_Theta(k,m,p);
     hat_x = solve_convex_relaxation_func(S_approx_shrink_shuffle(:), Theta,N,x_init,lambda, 20, 1e-8);
 
