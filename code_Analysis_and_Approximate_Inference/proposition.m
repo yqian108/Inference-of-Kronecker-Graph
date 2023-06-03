@@ -22,7 +22,7 @@ for i=1:length(K_vec)
     Theta = generate_Theta(K,m,p);
     PK_lin = p^K * ones(N,N) + reshape(Theta*x,[N,N])*sqrt(N);
     
-    error_output(i) = norm(PK - PK_lin)/sqrt(N);
+    error_output(i) = norm(PK - PK_lin);
     rank_output(i) = rank(PK_lin);
 end
 
@@ -40,7 +40,7 @@ xlabel('N', 'Interpreter', 'latex')
 clc;close all; clear;
 addpath(genpath('./func/.'));
 
-K_vec = 7:11;
+K_vec = 7:12;
 m = 2;
 p = 0.9;
 X = [0.5, 0; -1, 1];

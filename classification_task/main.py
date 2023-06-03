@@ -7,13 +7,13 @@ from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split
 import time
 from classes import Model,Patience,select_para, experiment
+import json
 
-
-# REDDIT-BINARY
-para = {0: {'Batch': 16, 'learning_rate': 0.01, 'hidden_size': 64},
-        1: {'Batch': 16, 'learning_rate': 0.001, 'hidden_size': 64},
-        2: {'Batch': 16, 'learning_rate': 0.01, 'hidden_size': 32},
-        3: {'Batch': 16, 'learning_rate': 0.001, 'hidden_size': 32},
+# IMDB-BINARY
+para = {0: {'Batch': 4, 'learning_rate': 0.01, 'hidden_size': 64},
+        1: {'Batch': 4, 'learning_rate': 0.001, 'hidden_size': 64},
+        2: {'Batch': 4, 'learning_rate': 0.01, 'hidden_size': 32},
+        3: {'Batch': 4, 'learning_rate': 0.001, 'hidden_size': 32},
         4: {'Batch': 8, 'learning_rate': 0.01, 'hidden_size': 64},
         5: {'Batch': 8, 'learning_rate': 0.001, 'hidden_size': 64},
         6: {'Batch': 8, 'learning_rate': 0.01, 'hidden_size': 32},
@@ -23,92 +23,84 @@ para = {0: {'Batch': 16, 'learning_rate': 0.01, 'hidden_size': 64},
 para_groups = 8
 
 if __name__ == "__main__":
-    """
-    Use a 10-fold CV for model assessment and use hold-out for parameters selection
-    """
+    start_time = time.time()  # 程序开始时间
     m0 = 4
-    m = m0 ** 2  # the size of the input features
+    m = m0 ** 2
     R = 3
-    K = 10  # K-FOLD
+    K = 10
     nums_eopch = 500
-    holdout_train_ratio = 0.9
-    outer_earlystop = 0.9
     early_stop_use_loss = False
     patience_nums = 50
+    classnum = 2
     # output_loss = "./log/REDDIT-BINARY/loss.txt"
     # output_acc = "./log/REDDIT-BINARY/acc.txt"
-
-    datax = pd.read_csv('./datasets/REDDIT-BINARY/convexrelaxation/convex_data_m4.csv',
+    datasetsplit = "datasets/IMDB-BINARY/IMDB-BINARY_1_splits"
+    datax = pd.read_csv('datasets/IMDB-BINARY/IMDB-BINARY_m4.csv',
         sep=',', header=None)
-    label = pd.read_csv('./datasets/REDDIT-BINARY/REDDIT-BINARY_graph_labels.csv',
+    label = pd.read_csv('datasets/IMDB-BINARY/IMDB-BINARY/IMDB-BINARY_graph_labels.csv',
         header=None)
+    datax = (datax - datax.mean()) / (datax.std())
 
     res = []
-    for outer_iter in range(10):
-        # K-FOLD
-        folds = KFold(n_splits=K, shuffle=True, random_state=42)
-        perf = 0
-        for trn_idx, test_idx in folds.split(datax, label):
-            train_df, train_label = datax.iloc[trn_idx], label.iloc[trn_idx]
-            test_df, test_label = datax.iloc[test_idx], label.iloc[test_idx]
+    # split
+    with open("{}.json".format(datasetsplit), "r", encoding="utf-8") as f:
+        content = json.load(f)
 
-            train_outer_data = torch.tensor(train_df.values).to(torch.float32)
-            train_outer_label = torch.tensor(train_label.values.reshape(-1, 1)).to(torch.float32)
-            test_outer_data = torch.tensor(test_df.values).to(torch.float32)
-            test_outer_label = torch.tensor(test_label.values.reshape(-1, 1)).to(torch.float32)
+    for idx, item in enumerate(content):
+        test_idx = item['test']
+        tmp = item['model_selection'][0]
+        train_valid = []
+        for tmp_ in tmp:
+            train_valid.append(tmp[tmp_])
+        train_idx, valid_idx = train_valid[0], train_valid[1]
 
-            data_arrays_outer_train = (train_outer_data, train_outer_label)
-            dataset_outer_train = data.TensorDataset(*data_arrays_outer_train)
-            data_arrays_outer_test = (test_outer_data, test_outer_label)
-            dataset_outer_test = data.TensorDataset(*data_arrays_outer_test)
+        train_df, train_label = datax.iloc[train_idx], label.iloc[train_idx]
+        test_df, test_label = datax.iloc[test_idx], label.iloc[test_idx]
+        valid_df, valid_label = datax.iloc[valid_idx], label.iloc[valid_idx]
 
-            # select:  hold-out
-            train_inner_dataset, valid_inner_dataset = data.random_split(dataset_outer_train,[int(len(dataset_outer_train) * holdout_train_ratio),len(dataset_outer_train) - int(len(dataset_outer_train) * holdout_train_ratio)]
-                                                                         , generator=torch.Generator().manual_seed(42))
+        # tensor
+        train_data = torch.tensor(train_df.values).to(torch.float32)
+        train_label = torch.tensor(train_label.values)
+        test_data = torch.tensor(test_df.values).to(torch.float32)
+        test_label = torch.tensor(test_label.values)
+        valid_data = torch.tensor(valid_df.values).to(torch.float32)
+        valid_label = torch.tensor(valid_label.values)
 
-            SelectPara = select_para()
-            for i in range(para_groups):
-                batch = para[i]['Batch']
-                lr = para[i]['learning_rate']
-                hidden = para[i]['hidden_size']
+        # tensordataset
+        data_arrays_train = (train_data, train_label)
+        dataset_train = data.TensorDataset(*data_arrays_train)
+        data_arrays_test = (test_data, test_label)
+        dataset_test = data.TensorDataset(*data_arrays_test)
+        data_arrays_valid = (valid_data, valid_label)
+        dataset_valid = data.TensorDataset(*data_arrays_valid)
 
-                inner_model = experiment(m,batch,lr,hidden,nums_eopch,train_inner_dataset,valid_inner_dataset)
-                val_accu,train_loss,acc_list = inner_model.train_valid_earlystop(early_stop_use_loss,patience_nums)
-                SelectPara.update(val_accu, batch, lr, hidden,train_loss,acc_list)
+        SelectPara = select_para()
+        for i in range(para_groups):
+            batch = para[i]['Batch']
+            lr = para[i]['learning_rate']
+            hidden = para[i]['hidden_size']
 
-            batch, lr, hidden,train_loss,acc_list = SelectPara.get_para()
-            # with open(output_loss, 'a') as f_train_los:
-            #     f_train_los.write("Select para\n\n")
-            #     f_train_los.write(str(train_loss))
-            #     f_train_los.write("\n\n\n")
-            # with open(output_acc, 'a') as f_train_los:
-            #     f_train_los.write("Select para\n\n")
-            #     f_train_los.write(str(acc_list))
-            #     f_train_los.write("\n\n\n")
+            inner_model = experiment(classnum,m,batch,lr,hidden,nums_eopch,dataset_train,dataset_valid)
+            val_loss,val_accu,train_loss,acc_list = inner_model.train_valid_earlystop(early_stop_use_loss,patience_nums)
+            SelectPara.update(val_accu, batch, lr, hidden,train_loss,acc_list)
 
-            perf_r = 0
-            train_R_dataset, valid_R_dataset = data.random_split(dataset_outer_train, [int(len(dataset_outer_train) * outer_earlystop),
-                len(dataset_outer_train) - int(len(dataset_outer_train) * outer_earlystop)]
-                 , generator=torch.Generator().manual_seed(42))
+        batch, lr, hidden,train_loss,acc_list = SelectPara.get_para()
+        print("best para: ",batch,lr,hidden)
 
-            for r in range(R):
-                outer_model = experiment(m,batch,lr,hidden,nums_eopch,train_R_dataset,valid_R_dataset)
-                val_accu,train_loss,val_accu_list = outer_model.train_valid_earlystop(early_stop_use_loss,patience_nums)
-                cur = outer_model.get_accu(dataset_outer_test)
-                perf_r = perf_r + cur
+        perf_r = 0
+        for r in range(R):
+            outer_model = experiment(classnum,m, batch, lr, hidden, nums_eopch, dataset_train, dataset_valid)
+            val_loss, val_accu, train_loss, val_accu_list = outer_model.train_valid_earlystop(early_stop_use_loss,
+                                                                                              patience_nums)
+            print("R = ", r, 'val accu ', val_accu)
+            cur = outer_model.get_accu(dataset_test)
+            print("R = ", r, 'accu ', cur)
+            perf_r = perf_r + cur
+        perf_r = perf_r / R
+        print("perf_r", perf_r)
+        res.append(perf_r)
 
-                # with open(output_loss, 'a') as f_train_los:
-                #     f_train_los.write("R\n\n")
-                #     f_train_los.write(str(train_loss))
-                #     f_train_los.write("\n\n\n")
-                # with open(output_acc, 'a') as f_train_los:
-                #     f_train_los.write("R\n\n\n")
-                #     f_train_los.write(str(acc_list))
-                #     f_train_los.write("\n\n\n")
-
-            perf_r = perf_r / R
-            perf = perf + perf_r
-
-        perf = perf/K
-        res.append(perf)
-    print("acc: ",res)
+    end_time = time.time()
+    run_time = end_time - start_time
+    print("time：", run_time)
+    print("acc: ", res)
