@@ -37,7 +37,7 @@ PF_Time = etime(t2,t1);
 % fid = fopen(output_filename,'a');
 % fprintf(fid, "\n time:\t %s \t second", num2str(PF_Time));
 % fclose(fid);
-fprintf('\n\n TotalExeTm：     %f  second\n\n',PF_Time);
+fprintf('\n\n TotalExeTm拢潞     %f  second\n\n',PF_Time);
 
 
 
@@ -47,7 +47,7 @@ fprintf('\n\n TotalExeTm：     %f  second\n\n',PF_Time);
 
 %% FUNCTIONS
 function [x] = solve_usingL0(v_S,Theta,N,m,max_iter,hard_max_iter,hard_nums,hard_step,tolerance)
-%     Find the solution of min ||v_S - Theta*x - sqrt(N) d||_2^2  s.t. ||d||_0 <= 2kN
+%     Find the solution of min ||v_S - Theta*x - d||_2^2  s.t. ||d||_0 <= 2kN
 %     Input
 %         -v_S: vector of size N^2 * 1
 %         -Theta:matrix of size N^2 * m*2
@@ -56,16 +56,16 @@ function [x] = solve_usingL0(v_S,Theta,N,m,max_iter,hard_max_iter,hard_nums,hard
     obj_pre = 0;
     x = zeros(m^2,1);
     for iter = 1:max_iter
-        % step 1: d <- argmin ||y - \sqrt(N) d||_2^2  s.t. ||d||_0 <= 2kN
-        y = (v_S - Theta*x)/sqrt(N);
-        d = IHT(y,N,hard_nums,hard_step,hard_max_iter,tolerance);  % 返回nums： 非0元素个数
-        d(1:10);
+        % step 1: d <- argmin ||y - d||_2^2  s.t. ||d||_0 <= 2kN
+        y = v_S - Theta*x;
+        d = IHT(y,N,hard_nums,hard_step,hard_max_iter,tolerance);  
+
         % step 2: x <- argmin ||y - Theta*x||_2^2 
-        y = v_S - sqrt(N)*d;
+        y = v_S - d;
         x = (Theta'*Theta)^(-1)*Theta'*y;
        
         %obj = norm(x-x_pre,2)^2;
-        obj = norm(v_S - Theta * x - sqrt(N) * d, 2)^2 ;  
+        obj = norm(v_S - Theta * x - d, 2)^2 ;  
         if(iter > 1 && abs(obj - obj_pre)/obj_pre < tolerance)
             break;
         end
