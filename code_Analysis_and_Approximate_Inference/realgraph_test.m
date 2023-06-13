@@ -4,10 +4,12 @@ addpath(genpath('./func/.'));
 DATASET = 'REDDIT-BINARY';
 input_edge = ['.\realgraph_datasets\',DATASET,'\',DATASET,'_A.txt'];
 input_sets = ['.\realgraph_datasets\',DATASET,'\',DATASET,'_graph_indicator.txt'];
+% input_edge = ['.\realgraph_datasets\',DATASET,'\raw\',DATASET,'\',DATASET,'_A.txt'];
+% input_sets = ['.\realgraph_datasets\',DATASET,'\raw\',DATASET,'\',DATASET,'_graph_indicator.txt'];
 isdirect = 0;
 lambda = 1;
 m = 4;
-output_file = ['.\realgraph_datasets\',DATASET,'\convexrelaxation\m',num2str(m),'.mat'];
+output_file = ['.\realgraph_datasets\',DATASET,'\convexrelaxation_m',num2str(m),'.mat'];
 
 
 [src,~,des] = textread(input_edge,'%d%s%d');  
