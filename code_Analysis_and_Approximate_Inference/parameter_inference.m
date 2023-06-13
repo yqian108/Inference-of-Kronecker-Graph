@@ -12,7 +12,7 @@ load(filename);
 % fclose(fid);
 
 t1 = clock;
-sh_lambda = 1;
+sh_lambda = 1e-2;
 for j = 1:warm
     load(filename);
     bar_p = sum(A_shuffle(:))/N/N;
