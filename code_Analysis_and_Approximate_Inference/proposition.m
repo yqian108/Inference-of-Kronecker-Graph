@@ -65,7 +65,7 @@ for i=1:length(K_vec)
     bar_A = (A - ( sum( A(:)/N/N ) )*ones(N,N))/sqrt(N);
     Z = A - PK;
     
-    error_output(i) = norm(bar_A - Z/sqrt(N) - S)/sqrt(N);
+    error_output(i) = norm(bar_A - Z/sqrt(N) - S);
    
 end
 
