@@ -5,7 +5,7 @@ warm = 10;
 
 time_str = num2str(16);
 filename = ['.\synthetic_datasets\para',time_str,'.mat'];
-% load(filename);
+load(filename);
 % fid = fopen(output_filename,'a');
 % fprintf(fid, "\n\n%s\n N:\t%s\t k:\t%s\t p:\t%s\t shuffle:\t%s\t\n", filename,num2str(N), num2str(K),num2str(p),num2str(shuffle_prop));
 % fprintf(fid, "x_true:\t%s\n", num2str(x_true'));
