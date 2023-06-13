@@ -62,7 +62,7 @@ To execute the code in `classification_task`, you can install the follwing basic
 * [Scikit-learn](https://scikit-learn.org/stable/): tested with version 1.0.2
 
 ## Contact information
-* Zhenyu LIAO
+* Zhenyu Liao
   * Assistant Professor at EIC, Huazhong University of Science and Tech
   * Website: [https://zhenyu-liao.github.io/](https://zhenyu-liao.github.io/)
   * E-mail: [zhenyu_liao@hust.edu.cn](mailto:zhenyu_liao@hust.edu.cn)
