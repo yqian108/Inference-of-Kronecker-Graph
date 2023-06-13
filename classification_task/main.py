@@ -23,7 +23,7 @@ para = {0: {'Batch': 4, 'learning_rate': 0.01, 'hidden_size': 64},
 para_groups = 8
 
 if __name__ == "__main__":
-    start_time = time.time()  # 程序开始时间
+    start_time = time.time()  
     m0 = 4
     m = m0 ** 2
     R = 3
