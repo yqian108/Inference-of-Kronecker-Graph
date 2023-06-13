@@ -12,6 +12,7 @@ filename = ['.\synthetic_datasets\para',time_str,'.mat'];
 % fclose(fid);
 
 t1 = clock;
+sh_lambda = 1;
 for j = 1:warm
     load(filename);
     bar_p = sum(A_shuffle(:))/N/N;
@@ -19,7 +20,7 @@ for j = 1:warm
     Theta = generate_Theta(K,m,p);
     S_approx_shrink_shuffle = de_noise(A_shuffle, N, bar_p, (m-1)*K+1);
     x_init = zeros(m^2,1);
-    hat_x = solve_convex_relaxation_func(S_approx_shrink_shuffle(:), Theta,N,x_init,0.03, 20, 1e-8);
+    hat_x = solve_convex_relaxation_func(S_approx_shrink_shuffle(:), Theta,N,x_init,sh_lambda, 20, 1e-8);
     mse = norm(x_true-hat_x,2)^2;
 %     fid = fopen(output_filename,'a');
 %     fprintf(fid, "iter:\t%s \n x:\t%s\n mse:\t %s \n",num2str(j), num2str(hat_x'),num2str(mse));
