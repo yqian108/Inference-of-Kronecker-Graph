@@ -71,7 +71,7 @@ To execute the code in `classification_task`, you can install the follwing basic
   * Master at EIC, Huazhong University of Science and Tech
   * E-mail: [m202172379@hust.edu.cn](mailto:m202172379@hust.edu.cn)
 
-* ChengMei Niu
+* Chengmei Niu
   * PhD student at EIC, Huazhong University of Science and Tech
   * E-mail: [chengmeiniu@hust.edu.cn](mailto:chengmeiniu@hust.edu.cn)
 
