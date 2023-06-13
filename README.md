@@ -8,8 +8,9 @@ Large and Dense Random Kronecker Graph*".
   * **corolarry.m**: test for corolarry 1
   * **generate_data.m**: generate a shuffled graph under our model
   * **parameter_inference.m**: the approach proposed (Algorithm 1- Algorithm 3)
+  * **stability_test.m**: test for the stability of our approach proposed (Algorithm 1- Algorithm 3)
   * **realgraph_test.m**: applying our model on realistic graphs
-  * **hard_thresholding_test.m**: using Iterative Hard-thresholding (IHT) rather than soft thresholding in Algorithm 3
+  * **hard_thresholding_test.m**: using Iterative Hard-thresholding (IHT) rather than soft thresholding (Algorithm 4)
   * `func` contains 
     * **generate_PK.m** : generate probability matrix using K times Kronecker power
       * Input:
