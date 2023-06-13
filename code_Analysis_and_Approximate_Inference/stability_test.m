@@ -2,7 +2,7 @@ clc;close all;clear;
 addpath(genpath('./func/.'));
 output_filename = 'StabilityTest.txt';
 
-sh_lambda = 1;
+sh_lambda = 1e-2;
 shuffle_prop =0.2;
 m = 2;
 vec_p = [0.3,0.4,0.5,0.6,0.7,0.8];
