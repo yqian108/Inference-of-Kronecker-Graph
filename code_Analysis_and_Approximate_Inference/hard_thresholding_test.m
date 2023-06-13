@@ -37,7 +37,7 @@ PF_Time = etime(t2,t1);
 % fid = fopen(output_filename,'a');
 % fprintf(fid, "\n time:\t %s \t second", num2str(PF_Time));
 % fclose(fid);
-fprintf('\n\n TotalExeTm£º     %f  second\n\n',PF_Time);
+fprintf('\n\n TotalExeTm:     %f  second\n\n',PF_Time);
 
 
 
