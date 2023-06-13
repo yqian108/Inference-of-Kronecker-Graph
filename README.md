@@ -69,7 +69,7 @@ To execute the code in `classification_task`, you can install the follwing basic
 
 * Yuanqian Xia
   * Master at EIC, Huazhong University of Science and Tech
-  * E-mail: [yuanqian_x@hust.edu.cn](mailto:m202172379@hust.edu.cn)
+  * E-mail: [m202172379@hust.edu.cn](mailto:m202172379@hust.edu.cn)
 
 * ChengMei Niu
   * PhD student at EIC, Huazhong University of Science and Tech
