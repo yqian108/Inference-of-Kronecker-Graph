@@ -61,7 +61,24 @@ To execute the code in `classification_task`, you can install the follwing basic
 * [Pandas](https://pandas.pydata.org/): tested with version 1.3.5
 * [Scikit-learn](https://scikit-learn.org/stable/): tested with version 1.0.2
 
+## Contact information
+* Zhenyu LIAO
+  * Assistant Professor at EIC, Huazhong University of Science and Tech
+  * Website: [https://zhenyu-liao.github.io/](https://zhenyu-liao.github.io/)
+  * E-mail: [zhenyu_liao@hust.edu.cn](mailto:zhenyu_liao@hust.edu.cn)
 
+* Yuanqian Xia
+  * Master at EIC, Huazhong University of Science and Tech
+  * E-mail: [yuanqian_x@hust.edu.cn](mailto:m202172379@hust.edu.cn)
+
+* ChengMei Niu
+  * PhD student at EIC, Huazhong University of Science and Tech
+  * E-mail: [chengmeiniu@hust.edu.cn](mailto:chengmeiniu@hust.edu.cn)
+
+* Yong Xiao
+  * Full Professor at EIC, Huazhong University of Science and Tech
+  * Website: [http://eic.hust.edu.cn/professor/xiaoyong/index.html](http://eic.hust.edu.cn/professor/xiaoyong/index.html)
+  * E-mail: [yongxiao@hust.edu.cn](mailto:yongxiao@hust.edu.cn)
 
 ## References
 [^1]:  Errica F, Podda M, Bacciu D, et al. A fair comparison of graph neural networks for graph classification[J]. arXiv preprint arXiv:1912.09893, 2019.
