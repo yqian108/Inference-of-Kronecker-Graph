@@ -37,7 +37,7 @@ if __name__ == "__main__":
     datasetsplit = "IMDB-BINARY_1_splits"
     datax = pd.read_csv('datasets/IMDB-BINARY/IMDB-BINARY_m4.csv',
         sep=',', header=None)
-    label = pd.read_csv('datasets/IMDB-BINARY/IMDB-BINARY/IMDB-BINARY_graph_labels.csv',
+    label = pd.read_csv('datasets/IMDB-BINARY/IMDB-BINARY_graph_labels.csv',
         header=None)
     datax = (datax - datax.mean()) / (datax.std())
 
