@@ -63,7 +63,8 @@ for i=1:length(K_vec)
     
     A = double(rand(N,N)<PK);
     bar_A = (A - ( sum( A(:)/N/N ) )*ones(N,N))/sqrt(N);
-    Z = A - PK;
+    bar_p = p^K;
+    Z = normrnd(0,sqrt(bar_p*(1-bar_p)),N,N);
     
     error_output(i) = norm(bar_A - Z/sqrt(N) - S);
    
