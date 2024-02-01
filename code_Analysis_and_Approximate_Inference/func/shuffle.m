@@ -1,3 +1,4 @@
+function [Pi_vector,A_shuffle] = shuffle(A,shuffle_prop, N, Pi_init_array)
 %     Using a permutation matrix to shuffle a graph
 %     Inputs:
 %         -A: adjacency of size N by N
