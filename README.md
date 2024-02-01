@@ -1,16 +1,18 @@
 # Inference-of-Kronecker-Graph
 This repository contains code to reproduces the results in the paper "*Analysis and Approximate Inference of
-Large and Dense Random Kronecker Graph*".
+Large Random Kronecker Graph*".
 ## About the code
 * `code_Analysis_and_Approximate_Inference` contains 
-  * **theorem.m**: test for Theorem 2
-  * **proposition.m**: test for Proposition 1, 2
-  * **corolarry.m**: test for corolarry 1
+  * **theorem.m**: test for Theorem C.1
+  * **proposition.m**: test for Proposition 3.1, 3.4
+  * **corolarry.m**: test for corolarry C.3
   * **generate_data.m**: generate a shuffled graph under our model
-  * **parameter_inference.m**: the approach proposed (Algorithm 1- Algorithm 3)
+  * **parameter_inference_relax.m**: the approach proposed (Algorithm 1- Algorithm 3) using convex relaxation
+  * **parameter_inference_IHT.m**: the approach proposed (Algorithm 1- Algorithm 3) using Iterative Hard-thresholding (IHT)
+  * **parameter_inference_relax_RNLA.m**: the approach proposed (Algorithm 1- Algorithm 3) using convex relaxation with RNLA acceleration
+  * **parameter_inference_IHT_RNLA.m**: the approach proposed (Algorithm 1- Algorithm 3) using IHT with RNLA acceleration
   * **stability_test.m**: test for the stability of our approach proposed (Algorithm 1- Algorithm 3)
   * **realgraph_test.m**: applying our model on realistic graphs
-  * **hard_thresholding_test.m**: using Iterative Hard-thresholding (IHT) rather than soft thresholding (Algorithm 4)
   * `func` contains 
     * **generate_PK.m** : generate probability matrix using K times Kronecker power
       * Input:
@@ -27,7 +29,7 @@ Large and Dense Random Kronecker Graph*".
       * Input: 
           * -A: Adjacency matrix of size $N \times N$
           * -shuffle_prop: The shuffle proportion, in other words, the Hamming distance $d_H(pi,I) <= shuffle\\_ prop * N$
-          * -N: The number of nodes
+          * -N: Number of nodes
           * -pi_init_array: Vector of size $N$
        * Output:
           * -Pi_vector: Vector of size $1 \times N$ meets with $Pi(i,Pi\\_ vector(i)) = 1$
@@ -35,17 +37,35 @@ Large and Dense Random Kronecker Graph*".
      * **de_noise.m**: de-noise by constructing an estimator S_approx_shrink of SK
        * Input:
          * -A:  Adjacency matrix of size $N \times N$
-         * -N: The number of ndoes
+         * -N: Number of ndoes
          * -bar_p: Constant between $0$ and $1$
-         * -c: The number of choosen singular values
+         * -c: Number of choosen singular values
        * Output: an estimator S_approx_shrink of $N$ by $N$
+     * **de_noise_rsvd.m**: de-noise by constructing an estimator S_approx_shrink of SK using rsvd
+       * Input:
+         * -A:  Adjacency matrix of size $N \times N$
+         * -N: Number of ndoes
+         * -bar_p: Constant between $0$ and $1$
+         * -c: Number of choosen singular values
+         * -q: Number of iterations
+       * Output: an estimator S_approx_shrink of $N$ by $N$ by rsvd
+     * **get_block.m**: random sampling for RNLA 
+       * Input:
+         * -S_approx_shrink:  Matrix of size $N$ by $N$
+         * -Theta: Coefficient matrix of size $N^2 \times m^2$
+         * -N: Number of ndoes
+         * -m: Kronecker initiator size
+         * -block_nums: Number of sampled blocks
+       * Output:
+         * -y_block: Vector of size $block\\_ nums * N $
+         * -Theta_block: Matrix of size $block\\_ nums * N \times m^2$
      * **solve_convex_relaxation_func.m**: the implement of Algorithm 3
         * Input: 
           * -y_block: Vector of size $N^2$
           * -Theta_block: Coefficient matrix of $N^2 \times m^2$
-          * -N: The number of nodes
+          * -N: Number of nodes
           * -x_init: Initial value of x
-          * -lambda: The hyperparameter in soft thresholding
+          * -lambda: Hyperparameter in soft thresholding
           * -max_iter: Maximum number of iterations
           * -tolerance: Condition for exiting an iteration
         * Output: vector of size $m^2$
