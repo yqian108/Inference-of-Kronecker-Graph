@@ -1,4 +1,4 @@
-%% Theorem 2: Asymptotic characterization of adjacency singular values
+%% Theorem C.1: Asymptotic characterization of adjacency singular values
 clc;close all; clear;
 addpath(genpath('./func/.'));
 

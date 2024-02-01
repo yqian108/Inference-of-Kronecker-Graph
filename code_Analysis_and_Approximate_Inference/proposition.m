@@ -1,4 +1,4 @@
-%% Prop 1 (i) & (iii)
+%% Prop 3.1 (i) & (iii)
 clc;close all; clear;
 addpath(genpath('./func/.'));
 

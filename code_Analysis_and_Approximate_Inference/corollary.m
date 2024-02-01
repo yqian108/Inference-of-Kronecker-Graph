@@ -1,4 +1,4 @@
-%% Corollary: Shrinkage estimation of small-rank S_K
+%% Corollary C.3: Shrinkage estimation of small-rank S_K
 clc;close all; clear;
 addpath(genpath('./func/.'));
 
