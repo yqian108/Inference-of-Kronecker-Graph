@@ -102,4 +102,4 @@ To execute the code in `classification_task`, you can install the follwing basic
   * E-mail: [yongxiao@hust.edu.cn](mailto:yongxiao@hust.edu.cn)
 
 ## References
-[^1]:  Errica F, Podda M, Bacciu D, et al. A fair comparison of graph neural networks for graph classification[J]. arXiv preprint arXiv:1912.09893, 2019.
+[^1]:  Errica F, Podda M, Bacciu D, et al. A Fair Comparison of Graph Neural Networks for Graph Classification[C]//International Conference on Learning Representations. 2019.
