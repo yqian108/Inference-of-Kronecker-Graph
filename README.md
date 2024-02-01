@@ -15,60 +15,12 @@ Large Random Kronecker Graph*".
   * **realgraph_test.m**: applying our model on realistic graphs
   * `func` contains 
     * **generate_PK.m** : generate probability matrix using K times Kronecker power
-      * Input:
-        * -P1: Kronecker initiator
-        * -K: Iter times
-      * Output: Kronecker probability matrix of size $m^K \times m^K$
     * **generate_Theta.m**: generate coefficient matrix
-      * Input: 
-        * -K: Iter times
-        * -m: Kronecker initiator size
-        * -p: Parameter of P1
-      * Output: coefficient matrix of size $m^{2K} \times m^2$ 
     * **shuffle.m**: using a permutation matrix to shuffle a graph
-      * Input: 
-          * -A: Adjacency matrix of size $N \times N$
-          * -shuffle_prop: The shuffle proportion, in other words, the Hamming distance $d_H(pi,I) <= shuffle\\_ prop * N$
-          * -N: Number of nodes
-          * -pi_init_array: Vector of size $N$
-       * Output:
-          * -Pi_vector: Vector of size $1 \times N$ meets with $Pi(i,Pi\\_ vector(i)) = 1$
-          * -A_shuffle: The adjacency matrix of the shuffled graph
-     * **de_noise.m**: de-noise by constructing an estimator S_approx_shrink of SK
-       * Input:
-         * -A:  Adjacency matrix of size $N \times N$
-         * -N: Number of ndoes
-         * -bar_p: Constant between $0$ and $1$
-         * -c: Number of choosen singular values
-       * Output: an estimator S_approx_shrink of $N$ by $N$
-     * **de_noise_rsvd.m**: de-noise by constructing an estimator S_approx_shrink of SK using rsvd
-       * Input:
-         * -A:  Adjacency matrix of size $N \times N$
-         * -N: Number of ndoes
-         * -bar_p: Constant between $0$ and $1$
-         * -c: Number of choosen singular values
-         * -q: Number of iterations
-       * Output: an estimator S_approx_shrink of $N$ by $N$ by rsvd
-     * **get_block.m**: random sampling for RNLA 
-       * Input:
-         * -S_approx_shrink:  Matrix of size $N$ by $N$
-         * -Theta: Coefficient matrix of size $N^2 \times m^2$
-         * -N: Number of ndoes
-         * -m: Kronecker initiator size
-         * -block_nums: Number of sampled blocks
-       * Output:
-         * -y_block: Vector of size $block\\_ nums * N $
-         * -Theta_block: Matrix of size $block\\_ nums * N \times m^2$
-     * **solve_convex_relaxation_func.m**: the implement of Algorithm 3
-        * Input: 
-          * -y_block: Vector of size $N^2$
-          * -Theta_block: Coefficient matrix of $N^2 \times m^2$
-          * -N: Number of nodes
-          * -x_init: Initial value of x
-          * -lambda: Hyperparameter in soft thresholding
-          * -max_iter: Maximum number of iterations
-          * -tolerance: Condition for exiting an iteration
-        * Output: vector of size $m^2$
+    * **de_noise.m**: de-noise by constructing an estimator S_approx_shrink of SK
+    * **de_noise_rsvd.m**: de-noise by constructing an estimator S_approx_shrink of SK using rsvd
+    * **get_block.m**: random sampling for RNLA 
+    * **solve_convex_relaxation_func.m**: the implement of Algorithm 3
      
 * `classification_task` contains 
   * **main.py**: test for classification_task, following the experiments in [^1]
