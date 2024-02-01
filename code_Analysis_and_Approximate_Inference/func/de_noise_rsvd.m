@@ -1,12 +1,12 @@
 function [S_approx_shrink] = de_noise_rsvd(A, N, bar_p, c, q)
 %     De-noise by constructing an estimator S_approx_shrink of SK using rsvd
-%     Input
-%           -A: Adjacency matrix  
-%           -bar_p: Constant between 0-1
-%           -c: Number of choosen singular values 
-%           -N: Number of nodes
-%           -q: Number of iterations
-%     Output: the estimator S_approx_shrink of SK (using rsvd)
+%     Inputs:
+%           -A: adjacency matrix  
+%           -bar_p: constant between 0-1
+%           -c: number of choosen singular values 
+%           -N: number of nodes
+%           -q: number of iterations
+%     Output: an estimator S_approx_shrink of N by N (using rsvd)
 
     f_shrink = @(t) sqrt(t.^2 - 4*bar_p*(1-bar_p));
     bar_A = (A - ( sum( A(:)/N/N ) )*ones(N,N))/sqrt(N);  

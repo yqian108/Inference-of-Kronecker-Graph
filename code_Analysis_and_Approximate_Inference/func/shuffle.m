@@ -1,12 +1,12 @@
-function [Pi_vector,A_shuffle] = shuffle(A,shuffle_prop, N, Pi_init_array)
-%     Get the shuffled matrix A_shuffle = Pi * A * Pi'
-%     Input
-%         -A: matrix of size N*N
-%         -shuffle_prop: the Hamming distance d_H(pi,I) <= shuffle_prop*N
-%         -pi_init_array: vector of size N
-%             initial correspondence, can be regarded as identity matrix 
-%     Output
+%     Using a permutation matrix to shuffle a graph
+%     Inputs:
+%         -A: adjacency of size N by N
+%         -shuffle_prop: the shuffle proportion, in other words, the Hamming distance $d_H(pi,I) <= shuffle_ prop * N$
+%         -N: number of nodes
+%         -pi_init_array: vector of size N 
+%     Outputs:
 %         -Pi_vector: vector of size 1*N meets with Pi(i,pi_vector(i)) = 1
+%         -A_shuffle: adjacency matrix of the shuffled graph
 
     shuffle_nodes = round(N*shuffle_prop);
     

@@ -1,7 +1,11 @@
 function [S_approx_shrink] = de_noise(A, N, bar_p, c)
-    % De-noise by constructing an estimator S_approx_shrink of SK
-    % Input: A: adjacency matrix  c: top c singular values & sigma >= 2 sqrt(bar_p*(1-bar_p)) N: number of nodes
-    % Output: the estimator S_approx_shrink of SK
+%     De-noise by constructing an estimator S_approx_shrink of SK
+%     Inputs:
+%           -A: adjacency matrix  
+%           -bar_p: constant between 0-1
+%           -c: number of choosen singular values 
+%           -N: number of nodes
+%     Output: an estimator S_approx_shrink of N by N
 
     f_shrink = @(t) sqrt(t.^2 - 4*bar_p*(1-bar_p));
     bar_A = (A - ( sum( A(:)/N/N ) )*ones(N,N))/sqrt(N);   

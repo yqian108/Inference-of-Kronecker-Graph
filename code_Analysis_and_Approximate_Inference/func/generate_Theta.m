@@ -1,5 +1,10 @@
 function [Theta] = generate_Theta(k,m,p)
-
+%    Generate coefficient matrix
+%    Inputs: 
+%       -K: iter times
+%       -m: Kronecker initiator size
+%       -p: parameter of P1
+%    Output: coefficient matrix of size m^2k by m^2k
 
 N = m^k;         
 Theta = zeros(N^2,m^2);

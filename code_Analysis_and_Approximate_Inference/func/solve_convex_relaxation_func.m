@@ -1,4 +1,15 @@
 function [hat_x] = solve_convex_relaxation_func(y_block, Theta_block,N,x_init, lambda, max_iter, tolerance) 
+%   The implement of Algorithm 3
+%   Inputs: 
+%      -y_block: Vector of size N^2
+%      -Theta_block: Coefficient matrix of N^2 by m^2
+%      -N: Number of nodes
+%      -x_init: Initial value of x
+%      -lambda: Hyperparameter in soft thresholding
+%      -max_iter: Maximum number of iterations
+%      -tolerance: Condition for exiting an iteration
+%   Output: vector of size m^2
+
     % Find the solution of min ||vec(S_approx_shrink) - Theta*x - sqrt(N)*e||_2^2 + lambda ||e||_1
     x_pre = x_init;
     para_lambda  = lambda/sqrt(N);

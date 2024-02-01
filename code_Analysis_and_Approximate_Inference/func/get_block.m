@@ -1,14 +1,14 @@
 function [y_block,Theta_block] = get_block(S_approx_shrink,Theta,N,m,block_nums)
 %     Random sampling for RNLA
-%     Input
-%         -S_approx_shrink,: Matrix of size N*N
-%         -Theta: Coefficient matrix of size N^2 * m^2
-%         -N: Number of nodes
-%         -m: Dimension of X
+%     Inputs:
+%         -S_approx_shrink,: matrix of size N by N
+%         -Theta: coefficient matrix of size N^2 by m^2
+%         -N: number of nodes
+%         -m: dimension of X
 %         -block_nums: Number of sampled blocks
-%     Output
-%         -y_block: Vector of size block_nums * N
-%         -Theta_block: Matrix of size (block_nums * N) * m^2
+%     Outputs:
+%         -y_block: vector of size block_nums * N
+%         -Theta_block: matrix of size (block_nums * N) by m^2
 
     index = randperm(N, block_nums); 
     y_block = zeros(block_nums * N, 1);
