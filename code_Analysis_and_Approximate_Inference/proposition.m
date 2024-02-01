@@ -36,7 +36,7 @@ semilogx(m.^K_vec,rank_output,'o-')
 title('Rank of $P_K^{lin}$', 'Interpreter', 'latex')
 xlabel('N', 'Interpreter', 'latex')
 
-%% Prop 2: Signal-plus-noise approximation for centered adjacency bar_A
+%% Prop 3.4: Signal-plus-noise approximation for centered adjacency bar_A
 clc;close all; clear;
 addpath(genpath('./func/.'));
 
