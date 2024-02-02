@@ -1,8 +1,9 @@
-# Inference-of-Kronecker-Graph
-This repository contains code to reproduces the results in the paper "*Analysis and Approximate Inference of
-Large Random Kronecker Graph*".
+# Analysis and Approximate Inference of Large Random Kronecker Graph
+This repository contains code to reproduces the numerical results in the paper "*Analysis and Approximate Inference of Large Random Kronecker Graph*".
+
+
 ## About the code
-* `code_Analysis_and_Approximate_Inference` contains 
+* The repository `/code_Analysis_and_Approximate_Inference` contains 
   * **theorem.m**: test for Theorem C.1
   * **proposition.m**: test for Proposition 3.1, 3.4
   * **corolarry.m**: test for corolarry C.3
@@ -13,7 +14,7 @@ Large Random Kronecker Graph*".
   * **parameter_inference_IHT_RNLA.m**: the approach proposed (Algorithm 1- Algorithm 3) using IHT with RNLA acceleration [^5]
   * **stability_test.m**: test for the stability of our approach proposed (Algorithm 1- Algorithm 3)
   * **realgraph_test.m**: applying our model on realistic graphs
-  * `func` contains 
+  * sub-folder `/func` that contains 
     * **generate_PK.m** : generate probability matrix using K times Kronecker power
     * **generate_Theta.m**: generate coefficient matrix
     * **shuffle.m**: using a permutation matrix to shuffle a graph
@@ -22,36 +23,18 @@ Large Random Kronecker Graph*".
     * **get_block.m**: random sampling for RNLA 
     * **solve_convex_relaxation_func.m**: the implement of Algorithm 3
      
-* `classification_task` contains 
+* The repository `/classification_task` contains 
   * **main.py**: test for classification_task, following the experiments in [^1]
   * **classes.py**: contains several modules for performing classification task in **main.py**
     
   
 ## Dependencies
-To execute the code in `classification_task`, you can install the follwing basic packages by yourself:
+The code in `/classification_task` relies on the following packages:
 * [Python](https://www.python.org/): tested with version 3.7.10
 * [Pytorch](https://pytorch.org/): tested with version 1.8.1
 * [Pandas](https://pandas.pydata.org/): tested with version 1.3.5
 * [Scikit-learn](https://scikit-learn.org/stable/): tested with version 1.0.2
 
-## Contact information
-* Zhenyu Liao
-  * Assistant Professor at EIC, Huazhong University of Science and Tech
-  * Website: [https://zhenyu-liao.github.io/](https://zhenyu-liao.github.io/)
-  * E-mail: [zhenyu_liao@hust.edu.cn](mailto:zhenyu_liao@hust.edu.cn)
-
-* Yuanqian Xia
-  * Master at EIC, Huazhong University of Science and Tech
-  * E-mail: [m202172379@hust.edu.cn](mailto:m202172379@hust.edu.cn)
-
-* Chengmei Niu
-  * PhD student at EIC, Huazhong University of Science and Tech
-  * E-mail: [chengmeiniu@hust.edu.cn](mailto:chengmeiniu@hust.edu.cn)
-
-* Yong Xiao
-  * Full Professor at EIC, Huazhong University of Science and Tech
-  * Website: [http://eic.hust.edu.cn/professor/xiaoyong/index.html](http://eic.hust.edu.cn/professor/xiaoyong/index.html)
-  * E-mail: [yongxiao@hust.edu.cn](mailto:yongxiao@hust.edu.cn)
 
 ## References
 [^1]: Errica F, Podda M, Bacciu D, et al. A Fair Comparison of Graph Neural Networks for Graph Classification[C]//International Conference on Learning Representations. 2019.
