@@ -22,6 +22,7 @@ This repository contains code to reproduces the numerical results in the paper "
     * **de_noise_rsvd.m**: de-noise by constructing an estimator S_approx_shrink of SK using rsvd
     * **get_block.m**: random sampling for RNLA 
     * **solve_convex_relaxation_func.m**: the implement of Algorithm 3
+  * sub-folder `/realgraph_datasets` that contains several chemical and social graph datasets: NCI1[^7], REDDIT-BINARY[^8], IMDB-BINARY[^8], PROTEINS_full[^6].
      
 * The repository `/classification_task` contains 
   * **main.py**: test for classification_task, following the experiments in [^1]
@@ -42,3 +43,6 @@ The code in `/classification_task` relies on the following packages:
 [^3]: Jain P, Kar P. Non-convex optimization for machine learning[J]. Foundations and Trends® in Machine Learning, 2017, 10(3-4): 142-363.
 [^4]: Slawski M, Ben-David E. Linear regression with sparsely permuted data[J]. Electronic Journal of Statistics, 2019, 13: 1-36.
 [^5]: Halko N, Martinsson P G, Tropp J A. Finding structure with randomness: Probabilistic algorithms for constructing approximate matrix decompositions[J]. SIAM review, 2011, 53(2): 217-288.
+[^6]: Borgwardt K M, Ong C S, Schönauer S, et al. Protein function prediction via graph kernels[J]. Bioinformatics, 2005, 21(suppl_1): i47-i56.
+[^7]: Wale N, Watson I A, Karypis G. Comparison of descriptor spaces for chemical compound retrieval and classification[J]. Knowledge and Information Systems, 2008, 14: 347-375.
+[^8]: Yanardag P, Vishwanathan S V N. Deep graph kernels[C]//Proceedings of the 21th ACM SIGKDD international conference on knowledge discovery and data mining. 2015: 1365-1374.
