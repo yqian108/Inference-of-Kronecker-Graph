@@ -21,7 +21,7 @@ Theta = generate_Theta(K,m,p);
 S = reshape(Theta*x,[N,N]);
 [U_S,Ell_S,V_S] = svd(S/sqrt(bar_p*(1-bar_p)));
 ell = diag(Ell_S);
-ell(1:6)
+
 
 A = double(rand(N,N)<PK);
 bar_A = (A - ( sum( A(:)/N/N ) )*ones(N,N))/sqrt(N);
@@ -40,14 +40,16 @@ hold on
 plot(edges,mu,'r', 'Linewidth',2);
 
 
-for i = 1:6
+for i = 1:N
     if ell(i)>1
         spike_approx = sqrt(bar_p*(1-bar_p))*sqrt(2 + ell(i)^2 + ell(i)^(-2));
         plot(spike_approx,0,'xr')
+    else
+        break;
     end
 end
 
-for i = 1:6
+for i = 1:N
     if ell(i)>1
         vi_bar_A = V_bar_A(:,i);
         vi_S = V_S(:,i);
@@ -58,6 +60,8 @@ for i = 1:6
         disp( ['Empirical: ', num2str( (vi_S'*vi_bar_A)^2 )] )
         disp( ['Empirical: ', num2str( (ui_S'*ui_bar_A)^2 )] )
         disp( ['Theory: ', num2str( 1 - ell(i)^(-2) )] )
+    else
+        break;
     end
 end
 
